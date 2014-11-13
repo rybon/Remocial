@@ -1,0 +1,32 @@
+<section id="favorites-screen" data-transition="slide" ng-style="style" ng-class="{ current: isCurrent, show: isShown, hide: isHidden, aside: isMenuOpen, right: isMenuRight, small: isMenuSmall }" screen>
+  <header>
+    <span class="centered title with-subtitle">
+      Vimeo
+      <small class="subtitle">My favorites</small>
+    </span>
+    <nav class="box">
+      <a href="#back" tap>
+        <span class="ss-icon">home</span>
+      </a>
+    </nav>
+    <nav class="right box">
+      <a href="#favorites-menu" tap>
+        <span class="ss-icon">settings</span>
+      </a>
+    </nav>
+  </header>
+  <article class="list indented scroll current" ng-controller="FavoritesController">
+    <div class="spacer"></div>
+    <p class="search-message" ng-show="noFavorites">You have no favorite videos.</p>
+    <div class="search-results">
+      <div ng-repeat="video in videoResults" video="{{video.id}}" ng-class="{ result: true, selected: selected }" tap="selectVideo($index)">
+        <div class="frame">
+          <img width="100" height="75" ng-src="{{video.thumbnails.thumbnail[0]['_content']}}" />
+          <i class="ss-icon">playvideo</i><br />
+          <span>{{video.duration|duration}}</span>
+        </div>
+        <h3>{{video.title}}</h3>
+      </div>
+    </div>
+  </article>
+</section>

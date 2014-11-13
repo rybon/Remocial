@@ -1,0 +1,27 @@
+<div class="dialog" ng-show="isShown" box="prompt">
+  <i class="ss-icon">airplay</i>
+  <p>
+    <strong>Please enter your screen code:</strong>
+    <br /><br />
+    <span class="digit"><strong ng-bind-html-unsafe="firstDigit"></strong></span>
+    <span class="digit"><strong ng-bind-html-unsafe="secondDigit"></strong></span>
+    <span class="digit"><strong ng-bind-html-unsafe="thirdDigit"></strong></span>
+    <span class="digit"><strong ng-bind-html-unsafe="fourthDigit"></strong></span>
+  </p>
+  <div class="buttons-row">
+    <a href="#" class="number-button" tap="addNumber(1)"><strong>1</strong></a>
+    <a href="#" class="number-button" tap="addNumber(2)"><strong>2</strong></a>
+    <a href="#" class="number-button" tap="addNumber(3)"><strong>3</strong></a>
+    <a href="#" class="number-button" tap="addNumber(4)"><strong>4</strong></a>
+    <a href="#" class="number-button" tap="addNumber(5)"><strong>5</strong></a>
+    <br class="clear" />
+    <a href="#" class="number-button" tap="addNumber(6)"><strong>6</strong></a>
+    <a href="#" class="number-button" tap="addNumber(7)"><strong>7</strong></a>
+    <a href="#" class="number-button" tap="addNumber(8)"><strong>8</strong></a>
+    <a href="#" class="number-button" tap="addNumber(9)"><strong>9</strong></a>
+    <a href="#" class="number-button" tap="addNumber(0)"><strong>0</strong></a>
+    <br class="clear" />
+    <a href="#dismiss" id="prompt-button" tap><strong>Cancel</strong></a>
+    <a href="#" id="erase-button" class="number-button" tap="removeNumber()"><strong>&lt;</strong></a>
+  </div>
+</div>

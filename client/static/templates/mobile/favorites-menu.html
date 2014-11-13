@@ -1,0 +1,13 @@
+<aside id="favorites-menu" data-right="true" ng-class="{ show: isShown, right: isMenuRight, small: isMenuSmall }" ng-controller="FavoritesMenuController" menu>
+  <header>
+    <span class="title centered">Delete favorites</span>
+  </header>
+  <article class="list current">
+    <div class="spacer"></div>
+    <ul class="favorites">
+      <li id="favoritesCache">
+        <a href="#" tap="flushFavorites()"><i class="ss-icon">deletefile</i></a>
+      </li>
+    </ul>
+  </article>
+</aside>

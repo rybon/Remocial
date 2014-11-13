@@ -1,0 +1,79 @@
+<aside id="search-menu" data-right="true" ng-class="{ show: isShown, right: isMenuRight, small: isMenuSmall }" ng-controller="SearchMenuController" menu>
+  <header>
+    <span class="title centered">Sort by</span>
+  </header>
+  <article class="list current">
+    <div class="spacer"></div>
+    <ul class="sort">
+      <li ng-class="{ current: isCurrent }" option="relevant">
+        <a href="#" tap="sort('relevant')">
+          <strong>Relevant</strong>
+        </a>
+      </li>
+      <li ng-class="{ current: isCurrent }" option="newest">
+        <a href="#" tap="sort('newest')">
+          <strong>Newest</strong>
+        </a>
+      </li>
+      <li ng-class="{ current: isCurrent }" option="oldest">
+        <a href="#" tap="sort('oldest')">
+          <strong>Oldest</strong>
+        </a>
+      </li>
+      <li ng-class="{ current: isCurrent }" option="most_played">
+        <a href="#" tap="sort('most_played')">
+          <strong>Most Played</strong>
+        </a>
+      </li>
+      <li ng-class="{ current: isCurrent }" option="most_commented">
+        <a href="#" tap="sort('most_commented')">
+          <strong>Most Commented</strong>
+        </a>
+      </li>
+      <li ng-class="{ current: isCurrent }" option="most_liked">
+        <a href="#" tap="sort('most_liked')">
+          <strong>Most Liked</strong>
+        </a>
+      </li>
+    </ul>
+    <header>
+      <span class="title centered">Find by username or ID</span>
+    </header>
+    <ul>
+      <li>
+        <form class="user-form" autocomplete="off" ng-class="{ off: !userClearIcon }" cancel>
+          <input type="text" id="user-query" name="user" ng-model="userId" key="search()" />
+          <span class="user-clear" ng-show="userClearIcon" tap="clearUser()"></span>
+        </form>
+      </li>
+    </ul>
+    <header>
+      <span class="title centered">Show page</span>
+    </header>
+    <ul>
+      <li>
+        <form class="page-form" autocomplete="off" cancel>
+          <input type="number" id="page-query" name="page" ng-model="page" min="1" key="search()" />
+        </form>
+      </li>
+    </ul>
+    <header>
+      <span class="title centered">Items per page</span>
+    </header>
+    <ul>
+      <li>
+        <form class="items-form" autocomplete="off" cancel>
+          <input type="number" id="items-query" name="items" ng-model="perPage" min="1" max="50" key="search()" />
+        </form>
+      </li>
+    </ul>
+    <header>
+      <span class="title centered">Clear search cache</span>
+    </header>
+    <ul>
+      <li id="searchCache">
+        <a href="#" tap="flushSearch()"><i class="ss-icon">deletefile</i></a>
+      </li>
+    </ul>
+  </article>
+</aside>

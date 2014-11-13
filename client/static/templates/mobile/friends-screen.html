@@ -1,0 +1,25 @@
+<section id="friends-screen" data-transition="slide" ng-style="style" ng-class="{ current: isCurrent, show: isShown, hide: isHidden, aside: isMenuOpen, right: isMenuRight, small: isMenuSmall }" screen>
+  <header>
+    <span class="title centered with-subtitle">
+      Friends
+      <small class="subtitle">Pass the remote</small>
+    </span>
+    <nav class="box">
+      <a href="#back" tap>
+        <span class="ss-icon">back</span>
+      </a>
+    </nav>
+  </header>
+  <article class="list indented scroll current" ng-controller="FriendsController">
+    <div class="spacer"></div>
+    <div class="friends-results">
+      <a href="#" ng-repeat="friend in facebookFriends|orderBy:'name'" friend="{{friend.id}}" data-gender="{{friend.gender}}" tap="selectFriend(friend.id)" ng-show="online">
+        <span class="ss-icon" ng-hide="female">user</span><span class="ss-icon" ng-show="female">femaleuser</span> <strong>{{friend.name}}</strong>
+      </a>
+    </div>
+    <p class="search-message" ng-hide="loggedIn">Pass the remote to your friends by logging in with Facebook via the home screen!</p>
+    <div ng-show="loggedIn">
+      <p class="search-message" ng-show="noFriendsOnline">None of your friends are online in the app right now.</p>
+    </div>
+  </article>
+</section>

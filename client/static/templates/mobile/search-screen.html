@@ -1,0 +1,60 @@
+<section id="search-screen" data-transition="slide" ng-style="style" ng-class="{ current: isCurrent, show: isShown, hide: isHidden, aside: isMenuOpen, right: isMenuRight, small: isMenuSmall }" screen>
+  <header>
+    <span class="centered title with-subtitle">
+      Vimeo
+      <small class="subtitle">Search videos</small>
+    </span>
+    <nav class="box">
+      <a href="#back" tap>
+        <span class="ss-icon">home</span>
+      </a>
+    </nav>
+    <nav class="right box">
+      <a href="#search-menu" tap>
+        <span class="ss-icon">settings</span>
+      </a>
+    </nav>
+  </header>
+  <article class="list indented scroll current" ng-controller="SearchController">
+    <div class="spacer"></div>
+    <form class="search-form" autocomplete="off" ng-class="{ off: !searchClearIcon }" cancel>
+      <input type="search" id="search-query" name="search" ng-model="searchQuery" key="search()" />
+      <span class="search-clear" ng-show="searchClearIcon" tap="clearSearchQuery()"></span>
+    </form>
+    <span class="loader" ng-show="searchLoading"></span>
+    <p class="search-message" ng-show="searchLoading">{{searchLoadingMessage}}</p>
+    <p class="search-message" ng-show="searchEmpty">{{searchEmptyMessage}}</p>
+    <p class="search-message" ng-show="searchError">
+      {{searchErrorMessage}}
+      <a href="#" tap="search()">
+        <span class="ss-icon">replay</span>
+      </a>
+    </p>
+    <div class="search-results">
+      <div ng-repeat="video in searchResults" video="{{video.id}}" ng-class="{ result: true, selected: selected }" tap="selectVideo($index)">
+        <div class="frame">
+          <img width="100" height="75" ng-src="{{video.thumbnails.thumbnail[0]['_content']}}" />
+          <i class="ss-icon">playvideo</i><br />
+          <span>{{video.duration|duration}}</span>
+        </div>
+        <h3>{{video.title}}</h3>
+      </div>
+    </div>
+  </article>
+  <footer ng-controller="SearchFooterController">
+    <span class="centered title with-subtitle" ng-hide="searchLoading">
+      {{searchSort|cleanup}} | '{{searchQuery}}'<span ng-show="searchWithUser"> by {{searchUserId}}</span>
+      <small class="subtitle">{{searchTotal|results}} | page {{searchPage}} of {{searchPages}} ({{beginPage}} - {{endPage}})</small>
+    </span>
+    <nav class="box">
+      <a href="#" ng-show="showPreviousPage" tap="previousPage()">
+        <span class="ss-icon">directleft</span>
+      </a>
+    </nav>
+    <nav class="right box">
+      <a href="#" ng-show="showNextPage" tap="nextPage()">
+        <span class="ss-icon">directright</span>
+      </a>
+    </nav>
+  </footer>
+</section>

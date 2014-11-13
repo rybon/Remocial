@@ -1,0 +1,59 @@
+<section id="main-screen" data-transition="slide" ng-style="style" ng-class="{ current: isCurrent, show: isShown, hide: isHidden, aside: isMenuOpen, right: isMenuRight, small: isMenuSmall }" screen>
+  <header>
+    <nav class="left box">
+      <a href="#howto-menu" tap>
+        <span class="ss-icon">help</span>
+      </a>
+    </nav>
+    <div class="centered title with-subtitle">
+      Rem<i class="icon-off"></i>cial
+      <small class="subtitle">The social remote for the web</small>
+    </div>
+  </header>
+
+  <article class="list indented scroll current" ng-controller="MainController">
+    <div class="spacer"></div>
+    <div id="main-menu">
+      <div ng-hide="connecting">
+        <div id="screen-connect" ng-hide="connected">
+          <a href="#" tap="connect()">
+            <strong><i class="ss-icon">airplay</i> Connect to a screen</strong>
+          </a>
+        </div>
+        <div id="screen-disconnect" ng-show="connected">
+          <a href="#" tap="disconnect()">
+            <strong><i class="ss-icon">eject</i> You're connected! Disconnect?</strong>
+          </a>
+        </div>
+      </div>
+      <div id="screen-connecting" ng-show="connecting">
+        <span></span>
+      </div>
+      <div id="vimeo">
+        <a href="#search-screen" tap="showSearch()">
+          <strong><i class="ss-icon ss-social-regular">vimeo</i> Search videos on Vimeo</strong>
+        </a>
+      </div>
+      <div id="favorites">
+        <a href="#favorites-screen" tap="showFavorites()">
+          <strong><i class="ss-icon">star</i> Show my favorites</strong>
+        </a>
+      </div>
+      <div id="playing" ng-show="currentVideo">
+        <a href="#player-screen" tap>
+          <strong><i class="ss-icon">playvideo</i> Now playing: {{currentVideoTitle}}</strong>
+        </a>
+      </div>
+    </div>
+    <div id="bottom">
+      <div id="facebook">
+        <a href="#" tap="login()" ng-hide="loggedIn">
+          <strong><i class="ss-icon ss-social-regular">facebook</i> Login with Facebook</strong>
+        </a>
+        <a href="#" tap="logout()" ng-show="loggedIn">
+          <strong><i class="ss-icon ss-social-regular">facebook</i> Hi {{facebookName}}! Log out?</strong>
+        </a>
+      </div>
+    </div>
+  </article>
+</section>

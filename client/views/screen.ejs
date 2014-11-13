@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="screen">
+  <head>
+    <meta charset="utf-8">
+    <title>Remocial • The social remote for the web</title>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="//f.vimeocdn.com/js/froogaloop2.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/screenfull.js/1.0.4/screenfull.min.js"></script>
+    <%- SocketStream %>
+  </head>
+  <body ng-cloak enter>
+    <div ng-controller="ScreenController">
+      <div ng-hide="remoteConnectedAndVideoSelected">
+        <span id="logo" title="The social remote for the web">Rem<i class="icon-off"></i>cial</span>
+        <div id="circle" title="Open this website on your phone and enter this screen code" ng-hide="remoteConnected">
+          <div class="loader" ng-hide="screenCode"></div>
+          <div id="screenCode" ng-show="screenCode" ng-bind="screenCode"></div>
+        </div>
+        <div id="videoSelect" title="Please select a video" ng-hide="!remoteConnected">
+          <div id="message"><i class="icon-warning-sign"></i> Please select a video</div>
+        </div>
+        <div id="fullscreen">
+          <a href="#" ng-click="fullScreen()" title="Switch to fullscreen viewing"><i class="icon-fullscreen"></i></a>
+        </div>
+      </div>
+      <div ng-show="remoteConnectedAndVideoSelected">
+        <div class="overlay"></div>
+        <player/>
+      </div>
+    </div>
+    <script>
+      $(function() {
+        var timestamp = 0;
+        window.setInterval(function() {
+          if(timestamp < (new Date().getTime() - 3000)) {
+            $(".overlay").off();
+            $(".overlay").attr("style", "z-index: 1000; cursor: url('/cursors/blank.png'), url('/cursors/blank.gif'), url('/cursors/blank.cur'), url('/cursors/blank.xbm'), none !important;");
+            window.setTimeout(function() {
+              $(".overlay").on("mousemove", function(e) {
+                timestamp = e.timeStamp;
+                $(this).attr("style", "z-index: 0; cursor: default !important;");
+              });
+            }, 1000);
+          }
+        }, 100);
+      });
+    </script>
+  </body>
+</html>

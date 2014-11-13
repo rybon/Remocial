@@ -1,0 +1,71 @@
+<section id="player-screen" data-transition="slide" ng-style="style" ng-class="{ current: isCurrent, show: isShown, hide: isHidden, aside: isMenuOpen, right: isMenuRight, small: isMenuSmall }" screen>
+  <header>
+    <span class="title centered with-subtitle">
+      Player
+      <small class="subtitle">Video controls</small>
+    </span>
+    <nav class="box">
+      <a href="#back" tap>
+        <span class="ss-icon">back</span>
+      </a>
+    </nav>
+    <nav class="right box" ng-show="connected" volume-icon>
+      <a href="#volume-menu" tap>
+        <span class="ss-icon" ng-show="mute">volume</span>
+        <span class="ss-icon" ng-show="lowVolume">lowvolume</span>
+        <span class="ss-icon" ng-show="highVolume">highvolume</span>
+      </a>
+    </nav>
+  </header>
+  <article class="list indented scroll current" ng-controller="PlayerController">
+    <div class="spacer"></div>
+    <div class="player">
+      <h1>{{currentTitle}}</h1>
+      <div class="frame">
+        <img width="200" height="150" ng-src="{{currentThumbnail}}" />
+      </div>
+      <div ng-show="connected">
+        <div class="loader" ng-hide="ready"></div>
+        <div ng-show="ready">
+          <input type="range" id="playback" value="0" min="0" max="100" step="1" playback />
+          <br />
+          <div class="info">
+            <i class="ss-icon">time</i> {{secondsPlayed|duration}} ({{percentagePlayed}}%) / {{totalDuration|duration}} | <i class="ss-icon">loading</i> {{percentageLoaded}}% | <i class="ss-icon" ng-show="isMuted">volume</i><i class="ss-icon" ng-show="lowVolume">lowvolume</i><i class="ss-icon" ng-show="highVolume">highvolume</i> {{volume}}%
+          </div>
+          <div class="controls">
+            <a href="#" tap="previous()"><i class="ss-icon">skipback</i></a>
+            <a href="#" ng-class="{ on: play }" tap="command('play')"><i id="play" class="ss-icon">play</i></a>
+            <a href="#" ng-class="{ on: pause }" tap="command('pause')"><i class="ss-icon">pause</i></a>
+            <a href="#" tap="next()"><i class="ss-icon">skipforward</i></a>
+          </div>
+          <div class="controls">
+            <a href="#" ng-class="{ on: isRepeated }" tap="repeat()"><i id="repeat" class="ss-icon">repeat</i></a>
+            <a href="#" ng-class="{ on: isFavorited }" tap="favorite()"><i id="star" class="ss-icon">star</i></a>
+            <a href="#" ng-class="{ on: isMuted }" tap="mute()"><i id="mute" class="ss-icon">volume</i></a>
+            <a href="#friends-screen" tap><i id="usergroup" class="ss-icon">usergroup</i></a>
+          </div>
+        </div>
+      </div>
+      <div ng-hide="connected">
+        <div class="info">
+          Connect to a screen or receive the remote
+        </div>
+        <div class="controls">
+          <a href="#" tap="previous()"><i class="ss-icon">skipback</i></a>
+          <a href="#" tap="next()"><i class="ss-icon">skipforward</i></a>
+        </div>
+        <div class="controls">
+          <a href="#" ng-class="{ on: isFavorited }" tap="favorite()"><i id="star" class="ss-icon">star</i></a>
+          <a href="#" tap="connect()"><i class="ss-icon">airplay</i></a>
+        </div>
+      </div>
+      <div class="info">
+        <p>by <img ng-src="{{currentPortrait}}" /> {{currentName}} ({{currentUsername}})</p>
+        <p class="description">from {{currentDate}} ({{currentModifiedDate}})</p>
+        <p class="description"><span ng-show="currentHD">HD | </span><i id="comments" class="ss-icon">comment</i> {{currentNumberOfComments}} | <i id="likes" class="ss-icon">like</i> {{currentNumberOfLikes}} | <i id="plays" class="ss-icon">playvideo</i> {{currentNumberOfPlays}}</p>
+        <p class="description"><a href="#" class="link" tap="toggleInfo()" ng-hide="displayInfo">More information</a><a href="#" class="link" tap="toggleInfo()" ng-show="displayInfo">Hide information</a> | <a ng-href="{{currentLink}}" target="_blank" class="link">Link to video</a></p>
+        <p class="description normal" ng-show="displayInfo" ng-bind-html-unsafe="currentDescription"></p>
+      </div>
+    </div>
+  </article>
+</section>

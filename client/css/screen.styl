@@ -1,0 +1,126 @@
+// Stylus docs:  http://learnboost.github.com/stylus/docs/js.html
+// Nib docs:     http://visionmedia.github.com/nib
+
+@import 'nib'
+
+// Main
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800')
+
+global-reset()
+
+middle()
+  display -webkit-box
+  -webkit-box-pack center
+  -webkit-box-align center
+  display -moz-box
+  -moz-box-pack center
+  -moz-box-align center
+  display box
+  box-pack center
+  box-align center
+
+circle(s)
+  width s
+  height s
+  border-radius (s / 2)
+
+effect3d()
+  text-shadow 0 1px 0 #ccc, 0 2px 0 #c9c9c9,0 3px 0 #bbb, 0 4px 0 #b9b9b9,0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15)
+
+*
+  box-sizing: border-box
+
+body, html, .overlay
+  width 100%
+  height 100%
+
+body
+  background-color #04040d
+  background url('/images/micro_carbon.png')
+  font-family 'Open Sans', sans-serif
+  middle()
+
+iframe, .overlay
+  position absolute
+  top 0
+  left 0
+
+.overlay
+  z-index 1000
+  // cursor url('/cursor/blank.png'), url('/cursor/blank.gif'), url('/cursor/blank.cur'), url('/cursor/blank.xbm'), none !important
+
+.loader
+  display block
+  background-color rgba(0,0,0,0)
+  border 12px solid rgba(255,255,255,1)
+  border-top 12px solid rgba(0,0,0,0)
+  border-left 12px solid rgba(0,0,0,0)
+  border-radius 56px
+  width 56px
+  height 56px
+  margin 0 auto
+  margin-top 10px
+  margin-bottom 10px
+  animation spin .5s infinite linear
+
+#logo
+  fixed bottom right
+  margin 0 5% 5% 0
+  color white
+  font-weight 600
+  font-size 30px
+  box-shadow rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset
+  background #202020
+  background-color rgba(0, 0, 0, 0.3)
+  display inline-block
+  padding 0 .4em
+  line-height 1.5em
+  border-radius 5px
+  i
+    font-family 'FontAwesome'
+    font-style normal
+    color #ff4444
+
+#fullscreen
+  fixed top right
+  margin 5% 5% 0 0
+  color white
+  font-weight 600
+  font-size 30px
+  box-shadow rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset
+  background #202020
+  background-color rgba(0, 0, 0, 0.3)
+  display inline-block
+  padding 0 .4em
+  line-height 1.5em
+  border-radius 5px
+  i
+    font-family 'FontAwesome'
+    font-style normal
+    color #fff
+
+#circle
+  middle()
+  circle 500px
+  background-color #00adef
+  color #fff
+  font-size 120px
+  font-weight 800
+  effect3d()
+
+#videoSelect
+  middle()
+  color white
+  font-weight 600
+  font-size 30px
+  box-shadow rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset
+  background #202020
+  background-color rgba(0, 0, 0, 0.3)
+  display inline-block
+  padding 0 .4em
+  line-height 1.5em
+  border-radius 5px
+  i
+    font-family 'FontAwesome'
+    font-style normal
+    color #fff

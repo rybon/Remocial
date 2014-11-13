@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="mobile">
+  <head>
+    <meta charset="utf-8">
+    <title>Remocial • The social remote for the web</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+    <link rel="stylesheet" href="/libraries/lungo/lungo.min.css">
+    <link rel="stylesheet" href="/libraries/lungo/lungo.theme.default.css">
+    <link href="/fonts/ss-social/ss-social-regular.css" rel="stylesheet" />
+    <link href="/fonts/ss-pika/ss-pika.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="/libraries/jquery-tools/rangeinput.js"></script>
+    <script src="/libraries/lscache/lscache.js"></script>
+    <script src="/libraries/fastbutton/google.fastbutton.js"></script>
+    <script src="/libraries/fastbutton/jquery.google.fastbutton.js"></script>
+    <%- SocketStream %>
+  </head>
+  <body class="app" ng-cloak>
+
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        // init the FB JS SDK
+        FB.init({
+          appId      : '<%= locals.FACEBOOK_APPID %>', // App ID from the App Dashboard
+          channelUrl : '//<%= locals.FACEBOOK_DOMAIN %>/channel.html', // Channel File for x-domain communication
+          status     : true, // check the login status upon init?
+          cookie     : true, // set sessions cookies to allow your server to access the session?
+          xfbml      : false, // parse XFBML tags on this page?
+          frictionlessRequests : true
+        });
+
+        // Additional initialization code such as adding Event Listeners goes here
+        FB.getLoginStatus(function(response) {
+          angular.element('body').injector().get('facebookManager').handleStatus(response);
+        });
+      };
+
+      // Load the SDK's source Asynchronously
+      // Note that the debug version is being actively developed and might
+      // contain some type checks that are overly strict.
+      // Please report such bugs using the bugs tool.
+      (function(d, debug) {
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+        ref.parentNode.insertBefore(js, ref);
+      }(document, /*debug*/ false));
+    </script>
+
+    <main-screen></main-screen>
+    <search-screen></search-screen>
+    <favorites-screen></favorites-screen>
+    <player-screen></player-screen>
+    <friends-screen></friends-screen>
+
+    <howto-menu></howto-menu>
+    <search-menu></search-menu>
+    <favorites-menu></favorites-menu>
+    <volume-menu></volume-menu>
+
+    <overlay-sheet></overlay-sheet>
+
+  </body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "Remocial",
+  "description": "The social remote for the web",
+  "version": "0.0.1",
+  "repository": "https://github.com/rybon/remocial",
+  "author": "",
+  "engines": { "node": "0.10.x" },
+  "dependencies": {
+    "socketstream": "0.3.x",
+    "ss-ejs": "0.0.x",
+    "ss-stylus": "0.1.x",
+    "ss-coffee": "0.1.x",
+    "ss-angular": "0.x.x",
+    "vimeo": "0.1.x",
+    "underscore": "1.x.x"
+  },
+  "devDependencies": {
+    "nodemon": "1.x.x",
+    "node-env-file": "0.1.x"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "watch": "nodemon app.js",
+    "build": "SS_ENV=production SS_PACK=1 node app.js"
+  }
+}
