@@ -6,7 +6,7 @@ var http = require('http'),
     env = (process.env.FACEBOOK_APPID && process.env.FACEBOOK_DOMAIN) ? process.env : require('node-env-file')(__dirname + '/.env');
 
 // Prevent this error: (node) warning: possible EventEmitter memory leak detected. 11 listeners added. Use emitter.setMaxListeners() to increase limit.
-process.setMaxListeners(0);
+require('events').EventEmitter.defaultMaxListeners = 0;
 
 // Define a single-page client called 'screen'
 ss.client.define('screen', {
