@@ -4,7 +4,7 @@ angular.module('screen.directives', [])
   .directive('player', ['$rootScope', '$window', ($rootScope, $window) ->
     restrict: 'E',
     replace: true,
-    template: '<iframe id="{{playerId}}" ng-src="{{playerUrl}}" width="{{playerWidth}}" height="{{playerHeight}}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
+    template: '<iframe src="//player.vimeo.com/video/17853047?api=1&player_id=player1" id="player1" ng-src="{{playerUrl}}" width="{{playerWidth}}" height="{{playerHeight}}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
     link: (scope, element, attrs) ->
       element.ready ->
         player = $window.$f(element[0])
