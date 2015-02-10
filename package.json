@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "repository": "https://github.com/rybon/remocial",
   "author": "",
-  "engines": { "node": "0.12.x" },
+  "engines": { "iojs": "1.1.x" },
   "dependencies": {
     "socketstream": "0.3.x",
     "ss-ejs": "0.0.x",
